@@ -1,7 +1,8 @@
 package com.course.breakingnews
 
-interface Platform {
-    val name: String
-}
 
-expect fun getPlatform(): Platform
+expect class Plataform(){
+    val osName: String
+    val onVersion: String
+    val deviceModel: String
+}
