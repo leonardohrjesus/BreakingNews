@@ -34,6 +34,11 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
+            // Koin - Inject dependency
+
+            implementation(libs.koin.android)
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -53,6 +58,12 @@ kotlin {
 
             // Coil
             implementation(libs.landscapist.coil3)
+
+            // Koin - Inject dependency
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+
         }
     }
 }
