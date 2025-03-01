@@ -22,10 +22,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import breakingnews.composeapp.generated.resources.Res
 import breakingnews.composeapp.generated.resources.breaking_news_logo
+import com.course.breakingnews.navigation.routes.HomeRoutes
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun DetaisHeaderSection(
+fun DetailsHeaderSection(
     modifier: Modifier = Modifier,
     imagePainter: Painter = painterResource(Res.drawable.breaking_news_logo),
     onClick :() -> Unit

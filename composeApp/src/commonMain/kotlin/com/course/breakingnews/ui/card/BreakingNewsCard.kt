@@ -34,12 +34,13 @@ fun BreakingNewsCard(
     title : String,
     author: String ,
     date: String,
-    imagePainter: Painter = painterResource(Res.drawable.breaking_news_logo )
+    imagePainter: Painter = painterResource(Res.drawable.breaking_news_logo ),
+    onClick: () -> Unit
 ){
     Card(
         modifier = modifier
-            .clickable {  }
-            .padding(16.dp)
+            .clickable {onClick.invoke()  }
+            .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
             .fillMaxWidth()
             .height(128.dp),
         shape = RoundedCornerShape(16.dp),

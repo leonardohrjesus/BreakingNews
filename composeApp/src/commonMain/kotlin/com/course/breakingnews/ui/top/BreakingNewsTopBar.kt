@@ -27,7 +27,7 @@ fun BreakingNewsTopBar(
     Box(
         modifier= modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(24.dp)
             .height(56.dp)
     ){
         Image(
