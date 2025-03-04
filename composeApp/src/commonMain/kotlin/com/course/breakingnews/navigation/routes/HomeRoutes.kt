@@ -7,7 +7,10 @@ sealed interface HomeRoutes {
     data object Home : HomeRoutes
 
     @Serializable
-    data object Details : HomeRoutes
+    data class Details(
+        val urlToImage: String,
+        val description: String
+    ):HomeRoutes
 
     @Serializable
     data object About : HomeRoutes

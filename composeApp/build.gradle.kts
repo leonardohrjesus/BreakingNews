@@ -36,8 +36,11 @@ kotlin {
             implementation(libs.androidx.activity.compose)
 
             // Koin - Inject dependency
-
             implementation(libs.koin.android)
+
+            // Ktor - Http Request
+            implementation(libs.ktor.client.android)
+            implementation(libs.ktor.client.okhttp)
 
         }
         commonMain.dependencies {
@@ -50,8 +53,6 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
 
-            //Serialization
-            implementation(libs.kotlinx.serialization.json)
 
             //Navigation
             implementation(libs.compose.navigation)
@@ -64,6 +65,14 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
 
+             // Ktor - Http Request
+            implementation(libs.bundles.ktor)
+
+        }
+
+        iosMain.dependencies {
+            // Ktor - Http Request
+            implementation(libs.ktor.client.darwin)
         }
     }
 }

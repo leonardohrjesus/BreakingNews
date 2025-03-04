@@ -25,11 +25,24 @@ class HomeViewModel(
         handleActions()
     }
 
+    private fun getBreakingNews(){
+        viewModelScope.launch {
+            getHomeUseCase.getBreakingNews().collect{data ->
+                val  result= data
+                HomeState.ShowData(data = data.newsDomains?: emptyList()).updateState()
+            }
+        }
+    }
+
     private fun handleActions() = viewModelScope.launch {
         pendingActions.collect { action ->
             when (action) {
                 is HomeAction.Idle -> requestIdleState()
-                is HomeAction.RequestNavigateToDetails -> navigateToDetails()
+                is HomeAction.RequestNavigateToDetails -> navigateToDetails(
+                    urlToImage = action.urlToImage,
+                    description = action.description
+                )
+                HomeAction.RequestBrakingNews -> getBreakingNews()
             }
         }
     }
@@ -40,9 +53,12 @@ class HomeViewModel(
         }
     }
 
-    private fun navigateToDetails() {
+    private fun navigateToDetails(urlToImage: String, description: String) {
         viewModelScope.launch {
-            HomeState.NavigateToDetails.updateState()
+            HomeState.NavigateToDetails(
+                urlToImage = urlToImage,
+                description =description
+            ).updateState()
         }
     }
 
