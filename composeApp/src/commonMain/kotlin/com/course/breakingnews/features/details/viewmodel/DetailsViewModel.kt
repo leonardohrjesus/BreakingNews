@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class DetailsViewModel:ViewModel() {
+class DetailsViewModel: ViewModel() {
 
     private val pendingActions = MutableSharedFlow<DetailsAction>()
 
@@ -22,21 +22,32 @@ class DetailsViewModel:ViewModel() {
         handleActions()
     }
 
-    private fun handleActions()= viewModelScope.launch {
-        pendingActions.collect{ action ->
-            when(action){
-                is DetailsAction.Idle -> {}
+    private fun handleActions() = viewModelScope.launch {
+        pendingActions.collect { action ->
+            when (action) {
+                is DetailsAction.Idle -> requestIdleState()
+                is DetailsAction.RequestOnBackPressed -> requestOnBackPressed()
             }
-
-
         }
     }
 
-    fun submitAction(action: DetailsAction){
+    private fun requestIdleState() {
+        viewModelScope.launch {
+            DetailsState.Idle.updateState()
+        }
+    }
+
+    private fun requestOnBackPressed() {
+        viewModelScope.launch {
+            DetailsState.OnBackPressed.updateState()
+        }
+    }
+
+    fun submitAction(action: DetailsAction) {
         viewModelScope.launch {
             pendingActions.emit(action)
         }
     }
 
-    private fun DetailsState.updateState() = _state.update{this}
+    private fun DetailsState.updateState() = _state.update { this }
 }

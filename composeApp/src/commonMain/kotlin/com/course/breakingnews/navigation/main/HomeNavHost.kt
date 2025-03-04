@@ -14,12 +14,12 @@ import com.course.breakingnews.navigation.routes.HomeRoutes
 fun HomeNavHost(
     modifier: Modifier = Modifier,
     navHostController: NavHostController
-){
+) {
     NavHost(
         navController = navHostController,
         startDestination = HomeRoutes.Home,
         modifier = modifier
-    ){
+    ) {
         composable<HomeRoutes.About> {
             AboutScreen(
                 onBackPressed = {
@@ -30,7 +30,7 @@ fun HomeNavHost(
 
         composable<HomeRoutes.Home> {
             HomeScreen(
-                navigateToDetailsScreen =  {
+                navigateToDetailsScreen = {
                     navHostController.navigate(HomeRoutes.Details)
                 },
                 navigateToAboutScreen = {
@@ -40,12 +40,11 @@ fun HomeNavHost(
         }
 
         composable<HomeRoutes.Details> {
-            DetailsScreen (
+            DetailsScreen(
                 onBackPressed = {
                     navHostController.popBackStack()
                 }
             )
         }
-
     }
 }

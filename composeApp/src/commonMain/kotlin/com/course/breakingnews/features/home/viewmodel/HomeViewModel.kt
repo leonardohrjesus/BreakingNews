@@ -25,8 +25,21 @@ class HomeViewModel: ViewModel() {
     private fun handleActions() = viewModelScope.launch {
         pendingActions.collect { action ->
             when (action) {
-                is HomeAction.Idle -> {}
+                is HomeAction.Idle -> requestIdleState()
+                is HomeAction.RequestNavigateToDetails -> navigateToDetails()
             }
+        }
+    }
+
+    private fun requestIdleState() {
+        viewModelScope.launch {
+            HomeState.Idle.updateState()
+        }
+    }
+
+    private fun navigateToDetails() {
+        viewModelScope.launch {
+            HomeState.NavigateToDetails.updateState()
         }
     }
 
